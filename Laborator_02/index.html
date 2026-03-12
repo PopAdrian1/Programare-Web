@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="app.css">
+<title>Jurnal de Lectură</title>
+</head>
+
+<body>
+
+    <center>
+        <h1 title="Titlul aplicației">Jurnalul meu de lectură</h1>
+
+        <p>
+        <span>Aplicația mea web va gestiona</span> 
+        <strong>cărți</strong> și <b>manga</b>.
+        </p>
+
+        <img src="images/bookshelf.jpeg"
+        alt="Raft cu cărți"
+        width="400"
+        height="250"
+        title="Raft cu cărți">
+
+        <br><br>
+
+    </center>
+
+    <br>
+
+    <div>
+
+        <h2>Funcționalități principale</h2>
+
+        <ul>
+            <p>Must have</p>
+            <ul>
+                <li><strong>Adăugare cărți/manga</strong></li>
+                <li><strong>Vizualizare progres</strong></li>
+                <li><strong>Notițe personale</strong></li>
+            </ul>
+
+            <p>Should have</p>
+            <ul>
+                <li><strong>Interfață prietenoasă</strong></li>
+                <li><strong>Statistici personale</strong></li>
+                <li><strong>Optiune citire online, cu actualizare automata a progresului</strong></li>
+            </ul>
+        </ul>
+
+    </div>
+
+    <br>
+
+    <h2>Exemplu tabel cu lecturi</h2>
+
+    <table border="1" width="80%" align="center">
+
+        <tr>
+        <th>Titlu</th>
+        <th>Autor</th>
+        <th>Status</th>
+        </tr>
+
+        <tr>
+        <td valign="top">Atomic Habits</td>
+        <td>James Clear</td>
+        <td>În curs</td>
+        </tr>
+
+        <tr>
+        <td valign="top">One Piece</td>
+        <td> Oda </td>
+        <td>În curs</td>
+        </tr>
+
+    </table>
+
+    <br><br>
+
+    <center>
+
+        <h2>Adaugă o carte</h2>
+
+        <form>
+
+        <fieldset>
+
+        <legend>Formular adăugare lectură</legend>
+
+        <p>
+        Titlu:
+        <input type="text" name="titlu" maxlength="50" size="30">
+        </p>
+
+        <p>
+        Autor:
+        <input type="text" name="autor" maxlength="50">
+        </p>
+
+        <p>
+        Pagini citite:
+        <input type="number" name="pagini" max="1000" step="1">
+        </p>
+
+        <p>
+        Status lectură:
+        <select name="status">
+        <option value="incurs">În curs</option>
+        <option value="finalizata" selected>Finalizată</option>
+        <option value="abandonata">Abandonată</option>
+        </select>
+        </p>
+
+        <p>
+        Genuri:
+        <select multiple name="genuri" size="3">
+        <option selected>Fantasy</option>
+        <option>Manga</option>
+        <option>Roman</option>
+        </select>
+        </p>
+
+        <p>
+        Carte recomandată:
+        <input type="checkbox" checked>
+        </p>
+
+        <p>
+        Notițe:
+        <br>
+        <textarea name="notite" cols="40" rows="5">
+        Scrie impresiile tale...
+        </textarea>
+        </p>
+
+        <p>
+        <input type="submit" value="Adaugă">
+        </p>
+
+        </fieldset>
+
+        </form>
+
+    </center>
+
+</body>
+</html>
