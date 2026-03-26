@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineVault — Catalog de Filme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!--Antet-->
+<header>
+  <h1>CinemaAdi</h1>
+  <h2>Catalog de filme</h2>
+
+  <p class="instrucțiuni">
+    <strong>Bine ați venit!</strong> Această aplicație vă permite să <b>gestionați</b>
+    colecția personală de filme. Adăugați titluri, notați , ratinguri, și
+    <em>explorați catalogul oricând</em> — totul într-un singur loc.
+  </p>
+
+  <br>
+
+  <div class="header-img-block">
+    <img
+      src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=320&h=160&fit=crop"
+      alt="Sală de cinema cu scaune roșii"
+      width="320"
+      height="160"
+      title="CineVault — aplicație de gestionare a cataloagelor de filme"
+    >
+  </div>
+
+  <div class="info-box" style="height: 44px;">
+    <span>4 filme înregistrate</span>
+  </div>
+</header>
+
+
+<!--Navigare + linkuri-->
+<div class="page-wrapper">
+
+  <section>
+    <div class="section-title">Navigare rapidă</div>
+    <div class="nav-links">
+      <a href="#formular-film">↓ Adaugă film</a>
+      <a href="#tabel-filme">↓ Catalog filme</a>
+      <a href="#liste-navigatie">↓ Liste &amp; Genuri</a>
+      <a href="https://www.imdb.com" target="_blank" name="imdb-link">IMDb ↗</a>
+      <a href="https://www.themoviedb.org" target="_blank" name="tmdb-link">TMDb ↗</a>
+    </div>
+    <hr>
+  </section>
+
+
+<!--Formular-->
+  <section id="formular-film">
+    <div class="section-title">Adaugă un film nou</div>
+
+    <form method="post" action="#">
+      <fieldset>
+        <legend>&#127916; Detalii film</legend>
+
+        <div class="form-row">
+          <!-- Titlu -->
+          <div>
+            <label for="titlu">Titlul filmului</label>
+            <input
+              type="text"
+              id="titlu"
+              name="titlu_film"
+              maxlength="120"
+              size="40"
+              value=""
+              placeholder="Ex: Interstelar"
+            >
+          </div>
+
+          <!-- An -->
+          <div>
+            <label for="an">Anul apariției</label>
+            <input
+              type="number"
+              id="an"
+              name="an_aparitie"
+              min="1888"
+              max="2030"
+              step="1"
+              value="2024"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Gen multiplu -->
+          <div>
+            <label for="gen">Genul filmului <small>(Ctrl + click = selecție multiplă)</small></label>
+            <select id="gen" name="gen_film[]" multiple>
+              <option value="actiune" selected>Acțiune</option>
+              <option value="comedie">Comedie</option>
+              <option value="drama">Dramă</option>
+              <option value="horror">Horror</option>
+              <option value="sf">SF</option>
+              <option value="thriller">Thriller</option>
+              <option value="animatie">Animație</option>
+            </select>
+          </div>
+
+          <!-- Textarea -->
+          <div>
+            <label for="nota">Note personale</label>
+            <textarea
+              id="nota"
+              name="nota_film"
+              cols="40"
+              rows="5"
+              readonly
+            >Adăugați propriile observații despre film după ce îl deblocați pentru editare.</textarea>
+          </div>
+        </div>
+
+        <!-- Checkbox-uri -->
+        <div class="form-group">
+          <label>Stare</label>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="vizionat" value="da" checked>
+              Vizionat
+            </label>
+            <label>
+              <input type="checkbox" name="favorit" value="da">
+              Favorit
+            </label>
+            <label>
+              <input type="checkbox" name="indisponibil" value="da" disabled>
+              Indisponibil
+            </label>
+          </div>
+        </div>
+
+        <!-- Radio -->
+        <div class="form-group">
+          <label>Format fizic</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="format_film" value="dvd">
+              DVD
+            </label>
+            <label>
+              <input type="radio" name="format_film" value="bluray">
+              Blu-ray
+            </label>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Butoane -->
+        <div class="btn-row">
+          <input type="submit" value="Adaugă în catalog">
+          <input type="reset" value="Resetează formularul">
+        </div>
+
+      </fieldset>
+    </form>
+  </section>
+
+
+<!--Tabel filme-->
+  <section id="tabel-filme">
+    <div class="section-title">Catalog filme</div>
+
+    <div class="table-wrapper">
+      <table class="filme" border="1" width="100%" bgcolor="#12121a" align="center">
+        <thead>
+          <tr>
+            <th>Titlu</th>
+            <th>Regizor</th>
+            <th>An</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="middle">Inception</td>
+            <td rowspan="2" valign="middle" align="center" bgcolor="#1a1a28">
+              Christopher Nolan
+            </td>
+            <td>2010</td>
+            <td class="rating">★ 8.8</td>
+          </tr>
+          <tr>
+            <td valign="middle">Interstellar</td>
+            <td>2014</td>
+            <td class="rating">★ 8.6</td>
+          </tr>
+          <tr>
+            <td valign="middle">Parasite</td>
+            <td valign="middle">Bong Joon-ho</td>
+            <td>2019</td>
+            <td class="rating">★ 8.5</td>
+          </tr>
+          <tr>
+            <td valign="middle">The Shawshank Redemption</td>
+            <td valign="middle">Frank Darabont</td>
+            <td>1994</td>
+            <td class="rating">★ 9.3</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="4" align="right">
+              Total filme în catalog: <strong>4</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+<!--Liste + navigatie-->
+  <section id="liste-navigatie">
+    <div class="section-title">Liste &amp; Resurse</div>
+
+    <div class="lists-grid">
+
+      <!-- Listă ordonată -->
+      <div>
+        <p class="list-label">Pași pentru adăugarea unui film</p>
+        <ol class="pași" type="I" start="1">
+          <li>Accesați <a href="#formular-film">formularul de adăugare</a></li>
+          <li>Completați titlul și anul apariției</li>
+          <li>Selectați genul (unul sau mai multe)</li>
+          <li>Bifați starea filmului (vizionat / favorit)</li>
+          <li>Alegeți formatul fizic disponibil</li>
+          <li>Apăsați „Adaugă în catalog"</li>
+        </ol>
+      </div>
+
+      <!-- Listă neordonată -->
+      <div>
+        <p class="list-label">Genuri disponibile</p>
+        <ul class="genuri">
+          <li>Acțiune</li>
+          <li>Comedie</li>
+          <li>Dramă</li>
+          <li>Horror</li>
+          <li>Science Fiction</li>
+          <li>Thriller</li>
+          <li>Animație</li>
+          <li>Documentar</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <center>
+      <p class="surse-label">
+        Surse externe recomandate pentru detalii suplimentare despre filme:
+      </p>
+      <div class="nav-links" style="justify-content:center;">
+        <a href="https://www.imdb.com" target="_blank">↗ IMDb — Internet Movie Database</a>
+        <a href="https://www.themoviedb.org" target="_blank">↗ TMDb — The Movie Database</a>
+      </div>
+      <br>
+      <a href="#formular-film" class="anchor-back">↑ Înapoi la formularul de adăugare</a>
+    </center>
+
+  </section>
+
+</div>
+
+<script>
+    var numeCinema = "CinemaAdi"
+    let nrFilme=4
+    const pretBilet = 25
+
+    console.log("La", numeCinema, "puteti viziona un numar de", nrFilme , "filme din catalogul nostru la un pret de doar ", pretBilet, "lei")
+    alert("Bun venit la "+ numeCinema + ". La noi puteti viziona " + nrFilme + " la pretul de doar "+pretBilet+" lei biletul")
+    
+    document.write("<p>Bun venit la " + numeCinema + "</p>")
+    document.write("<p>Catalogul nostru contine " + nrFilme +"</p>")
+    document.write("<p>Biletul costa " + pretBilet +"  lei </p>")
+
+    function calculeazaCostBilete(pretBilet, nrPersoane) {
+      if (nrPersoane > 5) 
+      {
+        return pretBilet * nrPersoane * 0.8;
+      }
+      return pretBilet * nrPersoane;
+    }
+
+    var calculeazaRatingMediu = function(rating1, rating2, rating3) 
+    {
+      var suma = rating1 + rating2 + rating3;
+      return (suma / 3).toFixed(1);
+    };
+
+    const formateazaInfo = (titlu, an, rating) => {
+      return titlu + " (" + an + ") - Rating: " + rating + "/10";
+    };
+
+    let costGrup = calculeazaCostBilete(35.5, 7);
+    console.log("Cost grup (7 pers): " + costGrup);
+
+    let costNormal = calculeazaCostBilete(35.5, 3);
+    console.log("Cost normal (3 pers): " + costNormal);
+    
+    let ratingMediu = calculeazaRatingMediu(8.5, 7.2, 9.0);
+    let info = formateazaInfo("Inception", 2010, ratingMediu);
+    document.write("<p>" + info + "</p>");
+
+    // ============================================================
+//  filme.js — Catalog de filme & metode pe array-uri
+// ============================================================
+
+const filme = [
+  {
+    titlu: "Inception",
+    regizor: "Christopher Nolan",
+    an: 2010,
+    rating: 8.8,
+    gen: "SF",
+    vizionat: true,
+  },
+  {
+    titlu: "Interstellar",
+    regizor: "Christopher Nolan",
+    an: 2014,
+    rating: 8.6,
+    gen: "SF",
+    vizionat: false,
+  },
+  {
+    titlu: "Parasite",
+    regizor: "Bong Joon-ho",
+    an: 2019,
+    rating: 8.5,
+    gen: "Thriller",
+    vizionat: true,
+  },
+  {
+    titlu: "The Shawshank Redemption",
+    regizor: "Frank Darabont",
+    an: 1994,
+    rating: 9.3,
+    gen: "Drama",
+    vizionat: false,
+  },
+];
+
+
+console.log("=".repeat(55));
+console.log(" Filme cu rating > 8.0");
+console.log("=".repeat(55));
+
+filme.forEach((film) => {
+  if (film.rating > 8.0) {
+    console.log(
+      `${film.titlu} (${film.an}) | ${film.regizor} | Rating: ${film.rating}/10 | Gen: ${film.gen}`
+    );
+  }
+});
+
+
+
+console.log("\n" + "=".repeat(55));
+console.log("Lista tuturor filmelor");
+console.log("=".repeat(55));
+
+const listaFormatata = filme.map(
+  (film) => `${film.titlu} (${film.an}) - ${film.rating}/10`
+);
+
+listaFormatata.forEach((rand) => console.log(rand));
+
+
+console.log("\n" + "=".repeat(55));
+console.log("Filme nevizionate");
+console.log("=".repeat(55));
+
+const nevizionate = filme.filter((film) => film.vizionat === false);
+
+nevizionate.forEach((film) => {
+  console.log(`${film.titlu} (${film.an}) — ${film.gen}`);
+});
+
+console.log(`\n  Total nevizionate: ${nevizionate.length} din ${filme.length} filme`);
+
+
+console.log("\n" + "=".repeat(55));
+console.log("Statistici ratinguri");
+console.log("=".repeat(55));
+
+const sumaRatinguri = filme.reduce((acumulator, film) => {
+  return acumulator + film.rating;
+}, 0);
+
+const mediaRatinguri = sumaRatinguri / filme.length;
+
+console.log(`Număr total de filme : ${filme.length}`);
+console.log(`Suma ratingurilor    : ${sumaRatinguri.toFixed(1)}`);
+console.log(`Media ratingurilor   : ${mediaRatinguri.toFixed(2)}/10`);
+console.log("=".repeat(55));
+
+</script>
+
+</body>
+</html>
