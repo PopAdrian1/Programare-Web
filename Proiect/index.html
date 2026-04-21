@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bătălia Navală</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>⚓ BĂTĂLIA NAVALĂ</h1>
+    <p class="subtitle">Scufundă flota inamică înainte să te scufunde ei pe tine!</p>
+  </header>
+
+  <!-- MESAJ STATUS -->
+  <div id="status-bar">
+    <span id="status-text">Plasează bărcile tale pe grilă!</span>
+  </div>
+
+  <!-- SECTIUNEA PRINCIPALA -->
+  <main>
+
+    <!-- GRILA JUCATOR -->
+    <section class="board-section">
+      <h2>🧑 Flota Ta</h2>
+      <div class="grid-wrapper">
+        <!-- Etichete coloane -->
+        <div class="col-labels">
+          <span></span>
+          <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span>
+          <span>F</span><span>G</span><span>H</span><span>I</span><span>J</span>
+        </div>
+        <div class="grid-with-rows">
+          <!-- Etichete randuri + celule generate de JS -->
+          <div class="row-labels" id="player-row-labels"></div>
+          <div class="grid" id="player-grid"></div>
+        </div>
+      </div>
+
+      <!-- Selectie barca si orientare -->
+      <div class="ship-selector" id="ship-selector">
+        <h3>Selectează barca:</h3>
+        <div class="ships-list" id="ships-list"></div>
+        <div class="orientation-toggle">
+          <label>Orientare:</label>
+          <button id="rotate-btn" onclick="toggleOrientation()">↔ Orizontal</button>
+        </div>
+        <button id="random-place-btn" onclick="randomPlacement()">🎲 Plasare Aleatorie</button>
+        <button id="reset-place-btn" onclick="resetPlacement()">🔄 Resetează</button>
+      </div>
+
+      <button id="start-btn" onclick="startGame()" disabled>▶ Începe Jocul</button>
+    </section>
+
+    <!-- SEPARATOR -->
+    <div class="vs-divider">
+      <span>VS</span>
+    </div>
+
+    <!-- GRILA CALCULATOR -->
+    <section class="board-section">
+      <h2>🤖 Flota Inamică</h2>
+      <div class="grid-wrapper">
+        <div class="col-labels">
+          <span></span>
+          <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span>
+          <span>F</span><span>G</span><span>H</span><span>I</span><span>J</span>
+        </div>
+        <div class="grid-with-rows">
+          <div class="row-labels" id="enemy-row-labels"></div>
+          <div class="grid" id="enemy-grid"></div>
+        </div>
+      </div>
+
+      <!-- Scor -->
+      <div class="score-panel">
+        <div class="score-item">
+          <span class="score-label">Lovituri Tale</span>
+          <span class="score-value" id="player-hits">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">Lovituri Inamice</span>
+          <span class="score-value" id="enemy-hits">0</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BARCI SCUFUNDATE -->
+  <section id="sunk-section">
+    <h3>🚢 Bărci Scufundate</h3>
+    <div id="sunk-list">
+      <p>Nicio barcă scufundată încă.</p>
+    </div>
+  </section>
+
+  <!-- MODAL SFARSIT JOC -->
+  <div id="game-over-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modal-title">Joc Terminat!</h2>
+      <p id="modal-message"></p>
+      <button onclick="resetGame()">🔄 Joacă Din Nou</button>
+    </div>
+  </div>
+
+  <!-- OVERLAY MODAL -->
+  <div id="modal-overlay" class="hidden" onclick="resetGame()"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Bătălia Navală &copy; 2025 — Proiect HTML + CSS + JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

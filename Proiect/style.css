@@ -1,0 +1,348 @@
+/* ===========================
+   VARIABILE CSS
+=========================== */
+:root {
+  --bg-dark: #050d1a;
+  --bg-panel: #0a1628;
+  --bg-card: #0f1f3d;
+  --accent-blue: #00d4ff;
+  --accent-cyan: #00ffcc;
+  --accent-red: #ff3d5a;
+  --accent-orange: #ff8c00;
+  --text-primary: #e0f4ff;
+  --text-muted: #5a7fa0;
+  --grid-border: #1a3a5c;
+  --cell-size: 35px; /* Am setat standardul la 35px conform ultimei tale modificări */
+  --hit-color: #ff3d5a;
+  --miss-color: #1a3a5c;
+  --ship-color: #1e4d7a;
+  --ship-placed: #00d4ff;
+  --font-main: 'Orbitron', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --glow-blue: 0 0 10px rgba(0, 212, 255, 0.5);
+  --glow-red: 0 0 10px rgba(255, 61, 90, 0.5);
+}
+
+/* ===========================
+   RESET & BASE
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(0, 40, 80, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 80, 120, 0.3) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 212, 255, 0.02) 40px, rgba(0, 212, 255, 0.02) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 212, 255, 0.02) 40px, rgba(0, 212, 255, 0.02) 41px);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+header h1 {
+  font-family: var(--font-main);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--accent-blue);
+  text-shadow: var(--glow-blue), 0 0 30px rgba(0, 212, 255, 0.3);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: flicker 4s infinite;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.7; }
+}
+
+/* ===========================
+   STATUS BAR
+=========================== */
+#status-bar {
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.08), transparent);
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  text-align: center;
+  padding: 12px 20px;
+}
+
+#status-text {
+  font-size: 0.9rem;
+  color: var(--accent-cyan);
+  letter-spacing: 2px;
+}
+
+/* ===========================
+   MAIN LAYOUT
+=========================== */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   BOARD SECTIONS
+=========================== */
+.board-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--grid-border);
+  border-radius: 12px;
+  padding: 24px;
+  min-width: 320px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.board-section h2 {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+}
+
+/* ===========================
+   VS DIVIDER
+=========================== */
+.vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.vs-divider span {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent-red);
+  text-shadow: var(--glow-red);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* ===========================
+   GRID SYSTEM
+=========================== */
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+.col-labels {
+  display: grid;
+  grid-template-columns: 24px repeat(10, var(--cell-size));
+  gap: 0;
+}
+
+.col-labels span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  height: 20px;
+}
+
+.grid-with-rows {
+  display: flex;
+  gap: 0;
+}
+
+.row-labels {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: var(--cell-size);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, var(--cell-size));
+  grid-template-rows: repeat(10, var(--cell-size));
+  border: 2px solid var(--accent-blue);
+  background-color: rgba(0, 212, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scanline Effect */
+.grid::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 2px;
+  background: var(--accent-cyan);
+  opacity: 0.1;
+  pointer-events: none;
+  animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(10 * var(--cell-size))); }
+}
+
+/* ===========================
+   CELLS
+=========================== */
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--bg-panel);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.cell:hover:not(.hit):not(.miss) {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.cell.enemy-cell:hover:not(.hit):not(.miss) {
+  cursor: crosshair;
+  background: rgba(255, 61, 90, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+/* Ship states */
+.cell.ship { background: var(--ship-color); }
+.cell.hover-valid { background: rgba(0, 255, 204, 0.3) !important; }
+.cell.hover-invalid { background: rgba(255, 61, 90, 0.3) !important; }
+
+/* Hit / Miss */
+.cell.hit {
+  background: var(--hit-color);
+  box-shadow: var(--glow-red);
+  animation: explode 0.4s ease;
+}
+
+.cell.hit::before {
+  content: '💥';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cell.miss { background: var(--miss-color); }
+.cell.miss::before {
+  content: '•';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-blue);
+  opacity: 0.5;
+}
+
+@keyframes explode {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ===========================
+   CONTROLS & SELECTORS
+=========================== */
+.ship-selector {
+  background: var(--bg-panel);
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.ship-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--grid-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ship-option.selected { border-color: var(--accent-cyan); background: rgba(0, 255, 204, 0.05); }
+.ship-option.placed { opacity: 0.3; cursor: not-allowed; }
+
+/* Buttons */
+button {
+  font-family: var(--font-main);
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-blue);
+  background: transparent;
+  color: var(--accent-blue);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover:not(:disabled) {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: var(--glow-blue);
+}
+
+#start-btn {
+  width: 100%;
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+  :root { --cell-size: 30px; }
+  main { flex-direction: column; align-items: center; }
+  .vs-divider { padding: 20px 0; }
+}
