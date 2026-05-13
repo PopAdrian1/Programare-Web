@@ -11,7 +11,7 @@ router.post('/login', (req, res) => {
   const user = users.find(u => u.username === username && u.password === password);
 
   if (!user) {
-    return res.send('<p>Username sau parolă greșită! <a href="/login.html">Înapoi</a></p>');
+    return res.send('<p>Username sau parolă greșită! <a href="/login">Înapoi</a></p>');
   }
 
   req.session.user = username;
@@ -20,7 +20,7 @@ router.post('/login', (req, res) => {
 
 router.post('/logout', (req, res) => {
   req.session.destroy();
-  res.redirect('/login.html');
+  res.redirect('/login');
 });
 
 module.exports = router;

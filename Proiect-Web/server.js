@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const authRoutes = require('./Routes/auth');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -18,8 +18,12 @@ app.use(session({
 
 // Ruta principala cu verificare sesiune
 app.get('/', (req, res) => {
-  if (!req.session.user) return res.redirect('/login.html');
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  if (!req.session.user) return res.redirect('/login');
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
 // Rutele de login/logout
