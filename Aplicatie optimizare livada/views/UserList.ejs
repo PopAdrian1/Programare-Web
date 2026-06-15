@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+
+    <link rel="stylesheet" href="/css/users.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Users List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% users.forEach(function(user) { %>
+                <tr>
+                    <td><%= user.username %></td>
+                    <td><%= user.role %></td>
+                    <td><%= new Date(user.createdAt).toLocaleString('en-US') %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
